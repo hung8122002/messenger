@@ -2,8 +2,12 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Button from "./Components/Button";
+import { useSelector } from "react-redux";
 
 function App() {
+  const dataUser = useSelector((state: any) => state.user);
+  console.log(dataUser);
+  
   return (
     <div className="App">
       <header className="App-header">

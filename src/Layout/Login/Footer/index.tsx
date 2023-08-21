@@ -1,3 +1,7 @@
+/**
+ * Footer của login page
+ * @returns tsx
+ */
 function Footer() {
   return (
     <div>

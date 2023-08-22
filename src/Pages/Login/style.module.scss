@@ -1,0 +1,64 @@
+.Login {
+  display: flex;
+  gap: 40px;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.Login__Left {
+  width: 30%;
+
+  h1 {
+    background: linear-gradient(
+      81.84deg,
+      #0099ff -9.4%,
+      #a033ff 51.57%,
+      #ff5280 84.07%,
+      #ff7061 90.59%
+    );
+    background-clip: text;
+    color: transparent;
+    padding: 10px 0;
+    font-size: 72px;
+    margin-bottom: 12px;
+  }
+
+  > p {
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 300px;
+    margin-top: 12px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+  }
+}
+
+::placeholder {
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: red;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: red;
+}
+
+.Login__Right {
+  width: 42%;
+
+  img {
+    width: 100%;
+  }
+}

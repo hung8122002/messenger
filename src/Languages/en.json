@@ -1,0 +1,16 @@
+{
+  "footer": {
+    "title": "The Apple and Google Play logos are trademarks of their respective owners."
+  },
+  "loginPage": {
+    "title": "Hang out anytime, anywhere",
+    "titleMobile": "Connect with your favourite people",
+    "description": "Messenger makes it easy and fun to stay close to your favourite people.",
+    "email" :"Email address",
+    "password" : "Password",
+    "login": "Log in",
+    "forgetPassword": "Forget password",
+    "createAccount": "Create account",
+    "or": "or"
+  }
+}

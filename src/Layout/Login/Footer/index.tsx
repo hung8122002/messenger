@@ -1,22 +1,34 @@
 import { Select, Space } from "antd";
 import clsx from "clsx";
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
 
 import style from "./style.module.scss";
+import { SelectValue } from "antd/es/select";
 /**
  * Footer của login page
  * @returns tsx
  */
 function Footer() {
+  // variables
+  const { t } = useTranslation("translation");
+
+  // fuction
+  /**
+   * Thay đổi ngôn ngữ
+   * @param value ngôn ngữ được chọn
+   */
+  function changeLanguage(value: SelectValue) {
+    i18n.changeLanguage(value as string);
+  }
+
   return (
     <div className={clsx(style.footer)}>
       <div className="flex align-center">
         <p>
           &copy; <b>Meta 2023</b>
         </p>
-        <p style={{ marginLeft: "10px" }}>
-          The Apple and Google Play logos are trademarks of their respective
-          owners.
-        </p>
+        <p style={{ marginLeft: "10px" }}>{t("footer.title")}</p>
       </div>
       <div className="flex">
         <Space wrap>
@@ -27,9 +39,10 @@ function Footer() {
             placement="topLeft"
             popupMatchSelectWidth={false}
             options={[
-              { value: "Vietnamese", label: "Vietnamese" },
-              { value: "English", label: "English" },
+              { value: "vi", label: "Vietnamese" },
+              { value: "en", label: "English" },
             ]}
+            onChange={changeLanguage}
           />
         </Space>
         <img

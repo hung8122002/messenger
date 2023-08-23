@@ -1,12 +1,12 @@
-.Login {
+.login {
   display: flex;
   gap: 40px;
   justify-content: space-around;
   padding-top: 20px;
 }
 
-.Login__Left {
-  width: 30%;
+.login__left {
+  width: 32%;
 
   h1 {
     background: linear-gradient(
@@ -40,25 +40,59 @@
   }
 }
 
+.login__left--mobile {
+  display: none;
+}
+
 ::placeholder {
-  color: red;
+  color: #ccc;
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: red;
+  color: #ccc;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: red;
+  color: #ccc;
 }
 
-.Login__Right {
+.login__right {
   width: 42%;
 
   img {
     width: 100%;
+  }
+}
+
+// Responsive
+@import "../../scss/variables.scss";
+
+@media screen and (max-width: $mobile-width) {
+  .login__left,
+  .login__right {
+    display: none;
+  }
+
+  .login__left--mobile {
+    display: block;
+    padding: 120px 20px;
+    text-align: center;
+
+    * {
+      margin-bottom: 30px;
+    }
+
+    > p {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    input {
+      margin-bottom: 20px;
+      width: 80%;
+    }
   }
 }

@@ -1,7 +1,4 @@
 import { ReactNode } from "react";
-import clsx from "clsx";
-
-import style from "./style.module.scss";
 import Footer from "./Footer";
 
 /**

@@ -1,0 +1,16 @@
+{
+  "footer": {
+    "title": "Logo Apple và Google Play là thương hiệu của chủ sở hữu tương ứng."
+  },
+  "loginPage": {
+    "title": "Tụ họp mọi lúc, mọi nơi",
+    "titleMobile": "Kết nối với người mà bạn muốn",
+    "description": "Với Messenger, việc kết nối với những người mình yêu mến thật đơn giản và thú vị.",
+    "email" :"Địa chỉ email",
+    "password" : "Mật khẩu",
+    "login": "Đăng nhập",
+    "forgetPassword": "Quên mật khẩu",
+    "createAccount": "Tạo tài khoản",
+    "or": "hoặc"
+  }
+}

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Input, Button } from "antd";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 import style from "./style.module.scss";
 
@@ -8,8 +9,8 @@ import style from "./style.module.scss";
  * Trang login
  * @returns tsx
  */
-function loginPage() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+function LoginPage() {
+  // variables
   const { t } = useTranslation("translation");
 
   return (
@@ -20,7 +21,7 @@ function loginPage() {
           src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/hlvibnBVrEb.svg"
           alt=""
         />
-        <p>{t("loginPage.titleMobile")}</p>
+        <p>{t("L.titleMobile")}</p>
         <Input
           autoComplete="false"
           size="large"
@@ -37,8 +38,9 @@ function loginPage() {
             {t("loginPage.login")}
           </Button>
           <h3>
-            <a href="a">{t("loginPage.forgetPassword")}</a> {t("loginPage.or")}{" "}
-            <a href="a">{t("loginPage.createAccount")}</a>
+            <Link to="recover">{t("loginPage.forgetPassword")}</Link>{" "}
+            {t("loginPage.or")}{" "}
+            <Link to="signup">{t("loginPage.createAccount")}</Link>
           </h3>
         </div>
       </div>
@@ -63,8 +65,9 @@ function loginPage() {
             {t("loginPage.login")}
           </Button>
           <p>
-            <a href="a">{t("loginPage.forgetPassword")}</a> {t("loginPage.or")}{" "}
-            <a href="a">{t("loginPage.createAccount")}</a>
+            <Link to="recover">{t("loginPage.forgetPassword")}</Link>{" "}
+            {t("loginPage.or")}{" "}
+            <Link to="signup">{t("loginPage.createAccount")}</Link>
           </p>
         </div>
       </div>
@@ -78,4 +81,4 @@ function loginPage() {
   );
 }
 
-export default loginPage;
+export default LoginPage;

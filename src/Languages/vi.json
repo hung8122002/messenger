@@ -6,11 +6,22 @@
     "title": "Tụ họp mọi lúc, mọi nơi",
     "titleMobile": "Kết nối với người mà bạn muốn",
     "description": "Với Messenger, việc kết nối với những người mình yêu mến thật đơn giản và thú vị.",
-    "email" :"Địa chỉ email",
-    "password" : "Mật khẩu",
+    "email": "Địa chỉ email",
+    "password": "Mật khẩu",
     "login": "Đăng nhập",
     "forgetPassword": "Quên mật khẩu",
     "createAccount": "Tạo tài khoản",
     "or": "hoặc"
+  },
+  "signupPage": {
+    "title": "Tạo tài khoản mới",
+    "description": "Nhanh chóng và dễ dàng",
+    "firstName": "Họ",
+    "surname": "Tên",
+    "email": "Địa chỉ email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "signup": "Đăng ký",
+    "haveAccount": "Đã có tài khoản ?"
   }
 }

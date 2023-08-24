@@ -6,11 +6,22 @@
     "title": "Hang out anytime, anywhere",
     "titleMobile": "Connect with your favourite people",
     "description": "Messenger makes it easy and fun to stay close to your favourite people.",
-    "email" :"Email address",
-    "password" : "Password",
+    "email": "Email address",
+    "password": "Password",
     "login": "Log in",
     "forgetPassword": "Forget password",
     "createAccount": "Create account",
     "or": "or"
+  },
+  "signupPage": {
+    "title": "Create a new account",
+    "description": "It's quick and easy.",
+    "firstName": "First Name",
+    "surname": "Surname",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signup": "Sign up",
+    "haveAccount": "Already have an account ?"
   }
 }

@@ -20,19 +20,19 @@ function SignupPage() {
             <Input placeholder={t("signupPage.surname")} size="large" />
           </Space>
           <Space.Compact style={{ display: "flex" }}>
-            <Input placeholder={t("signupPage.email")} size="large" />
+            <Input placeholder={t("common.email")} size="large" />
           </Space.Compact>
           <Space.Compact style={{ display: "flex" }}>
             <Input
               type="password"
-              placeholder={t("signupPage.password")}
+              placeholder={t("common.password")}
               size="large"
             />
           </Space.Compact>
           <Space.Compact style={{ display: "flex" }}>
             <Input
               type="password"
-              placeholder={t("signupPage.confirmPassword")}
+              placeholder={t("common.confirmPassword")}
               size="large"
             />
           </Space.Compact>

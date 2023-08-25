@@ -21,16 +21,16 @@ function LoginPage() {
           src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/hlvibnBVrEb.svg"
           alt=""
         />
-        <p>{t("L.titleMobile")}</p>
+        <p>{t("loginPage.titleMobile")}</p>
         <Input
           autoComplete="false"
           size="large"
-          placeholder={t("loginPage.email")}
+          placeholder={t("common.email")}
         />
         <Input
           autoComplete="false"
           size="large"
-          placeholder={t("loginPage.password")}
+          placeholder={t("common.password")}
           type="Password"
         />
         <div className={clsx(style.option)}>
@@ -52,12 +52,12 @@ function LoginPage() {
         <Input
           autoComplete="false"
           size="large"
-          placeholder={t("loginPage.email")}
+          placeholder={t("common.email")}
         />
         <Input
           autoComplete="false"
           size="large"
-          placeholder={t("loginPage.password")}
+          placeholder={t("common.password")}
           type="Password"
         />
         <div className={clsx(style.option)}>

@@ -6,8 +6,6 @@
     "title": "Tụ họp mọi lúc, mọi nơi",
     "titleMobile": "Kết nối với người mà bạn muốn",
     "description": "Với Messenger, việc kết nối với những người mình yêu mến thật đơn giản và thú vị.",
-    "email": "Địa chỉ email",
-    "password": "Mật khẩu",
     "login": "Đăng nhập",
     "forgetPassword": "Quên mật khẩu",
     "createAccount": "Tạo tài khoản",
@@ -18,10 +16,32 @@
     "description": "Nhanh chóng và dễ dàng",
     "firstName": "Họ",
     "surname": "Tên",
-    "email": "Địa chỉ email",
-    "password": "Mật khẩu",
-    "confirmPassword": "Xác nhận mật khẩu",
     "signup": "Đăng ký",
     "haveAccount": "Đã có tài khoản ?"
+  },
+  "recover": {
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước đó",
+    "done": "Hoàn thành",
+    "step1": "Xác thực tài khoản",
+    "step2": "Mã xác nhận",
+    "step3": "Đặt lại mật khẩu",
+    "step1Title": "Tìm tài khoản của bạn",
+    "step1Description": "Vui lòng nhập địa chỉ email của bạn để tìm kiếm tài khoản của bạn.",
+    "step2Title": "Nhập mã xác nhận",
+    "step2Description": "Vui lòng kiểm tra email để tìm tin nhắn có mã của bạn. Mã của bạn dài 6 số.",
+    "step2SubDescription": "Chúng tôi gửi mã tới:",
+    "step2Input": "Nhập mã",
+    "step3Title": "Đặt lại mật khẩu",
+    "step3Description": "Bạn nên sử dụng mật khẩu mạnh mà bạn không sử dụng ở nơi khác.",
+    "notiDescription": "Bạn sẽ đi đến trang đăng nhập trong {{sec}} giây.",
+    "login": "Đăng nhập ngay"
+  },
+  "common": {
+    "email": "Địa chỉ emial",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "success": "Thành công"
   }
 }

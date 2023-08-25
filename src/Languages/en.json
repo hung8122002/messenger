@@ -6,8 +6,6 @@
     "title": "Hang out anytime, anywhere",
     "titleMobile": "Connect with your favourite people",
     "description": "Messenger makes it easy and fun to stay close to your favourite people.",
-    "email": "Email address",
-    "password": "Password",
     "login": "Log in",
     "forgetPassword": "Forget password",
     "createAccount": "Create account",
@@ -18,10 +16,32 @@
     "description": "It's quick and easy.",
     "firstName": "First Name",
     "surname": "Surname",
-    "email": "Email Address",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
     "signup": "Sign up",
     "haveAccount": "Already have an account ?"
+  },
+  "recover": {
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "done": "Done",
+    "step1": "Check account",
+    "step2": "Vertify code",
+    "step3": "Reset password",
+    "step1Title": "Find your account",
+    "step1Description": "Please enter your email address to search for your account.",
+    "step2Title": "Enter security code",
+    "step2Description": "Please check your emails for a message with your code. Your code is 6 numbers long.",
+    "step2SubDescription": "We sent your code to:",
+    "step2Input": "Enter code",
+    "step3Title": "Reset password",
+    "step3Description": "It's a good idea to use a strong password that you're not using elsewhere.",
+    "notiDescription": "You will go to lognin page in {{sec}} second.",
+    "login": "Login Now"
+  },
+  "common": {
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "success": "Successfully"
   }
 }

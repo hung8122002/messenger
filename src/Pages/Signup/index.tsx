@@ -4,9 +4,14 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import style from "./style.module.scss";
+import { ValidateInput } from "~/Components";
+
 function SignupPage() {
   // variables
   const { t } = useTranslation("translation");
+
+  //functions
+
   return (
     <div className={clsx(style.signup)}>
       <h1>Messenger</h1>
@@ -16,6 +21,14 @@ function SignupPage() {
 
         <div className={clsx(style.content__form)}>
           <Space style={{ display: "flex" }}>
+            <ValidateInput
+              title={t("validate.empty", {
+                message: t("signupPage.firstName"),
+              })}
+              placeholder={t("signupPage.firstName")}
+              size="large"
+              placement="left"
+            />
             <Input placeholder={t("signupPage.firstName")} size="large" />
             <Input placeholder={t("signupPage.surname")} size="large" />
           </Space>

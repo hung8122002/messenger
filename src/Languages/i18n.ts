@@ -17,6 +17,11 @@ i18n.use(initReactI18next).init({
   lng: "en",
   interpolation: {
     escapeValue: false,
+    format: function (value: string, format?: string, _lng?: string) {
+      if (format === "uppercase") return value.toUpperCase();
+      if (format === "lowercase") return value.toLowerCase();
+      return value;
+    },
   },
 });
 

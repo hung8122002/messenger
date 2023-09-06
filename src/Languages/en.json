@@ -43,5 +43,8 @@
     "password": "Password",
     "confirmPassword": "Confirm Password",
     "success": "Successfully"
+  },
+  "validate": {
+    "empty": "Please enter your {{ message, lowercase }}"
   }
 }

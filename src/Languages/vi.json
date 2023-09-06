@@ -43,5 +43,8 @@
     "password": "Mật khẩu",
     "confirmPassword": "Xác nhận mật khẩu",
     "success": "Thành công"
+  },
+  "validate": {
+    "empty": "Vui lòng nhập {{ message, lowercase }} của bạn"
   }
 }

@@ -39,12 +39,15 @@
     "login": "Đăng nhập ngay"
   },
   "common": {
-    "email": "Địa chỉ emial",
+    "email": "Địa chỉ email",
     "password": "Mật khẩu",
     "confirmPassword": "Xác nhận mật khẩu",
     "success": "Thành công"
   },
   "validate": {
-    "empty": "Vui lòng nhập {{ message, lowercase }} của bạn"
+    "empty": "Vui lòng nhập {{ message, lowercase }} của bạn",
+    "invalid": "Vui lòng nhập {{ message, lowercase }} hợp lệ",
+    "password": "Mật khẩu phải chứa ít nhất 6 ký tự, tối đa 20 ký tự và bao gồm số và chữ cái",
+    "confirmPassword": "Vui lòng nhập đúng mật khẩu"
   }
 }

@@ -33,7 +33,7 @@ function Footer() {
       <div className="flex">
         <Space wrap>
           <Select
-            defaultValue="English"
+            defaultValue="en"
             style={{ width: 120 }}
             bordered={false}
             placement="topLeft"

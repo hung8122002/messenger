@@ -14,7 +14,7 @@
   "signupPage": {
     "title": "Create a new account",
     "description": "It's quick and easy.",
-    "firstName": "First Name",
+    "firstName": "First name",
     "surname": "Surname",
     "signup": "Sign up",
     "haveAccount": "Already have an account ?"
@@ -45,6 +45,9 @@
     "success": "Successfully"
   },
   "validate": {
-    "empty": "Please enter your {{ message, lowercase }}"
+    "empty": "Please enter your {{ message, lowercase }}",
+    "invalid": "Please enter a valid {{ message, lowercase }}",
+    "password": "Password must contain at least 6 characters, at most 20 characters, and include numbers and letters",
+    "confirmPassword": "Please enter a correct password"
   }
 }

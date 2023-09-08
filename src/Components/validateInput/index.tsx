@@ -11,7 +11,7 @@ type validateInputProps = {
   placeholder?: string;
   size?: "large" | "middle" | "small";
   placement?: TooltipPlacement;
-  triggerValidate?: boolean;
+  triggerValidate?: number;
   rules?: Array<rule>;
   rePassword?: string;
   type?: "number" | "text" | "password";
@@ -50,17 +50,24 @@ function ValidateInput({
   // Tiêu đề tooltip
   const [title, setTitle] = useState("");
 
+  const [isValid, setIsValid] = useState(true);
+
   // Ref input
   const componentRef = useRef<InputRef>(null);
 
   useEffect(() => {
-    if (triggerValidate) {
-      checkRule();
-    }
-    if (title && !triggerValidate) {
+    setIsValid(true);
+    console.log(isValid);
+    setIsValid(true);
+    checkRule();
+    setIsValid(true);
+  }, [triggerValidate]);
+
+  useEffect(() => {
+    if (!isValid) {
       invalidRef(componentRef.current);
     }
-  }, [title, triggerValidate]);
+  }, [isValid]);
 
   // variables
   const { t } = useTranslation("translation");
@@ -93,6 +100,7 @@ function ValidateInput({
   function checkNullOrEmpty() {
     if (!data.trim()) {
       setTitle("empty");
+      setIsValid(false);
     }
   }
 
@@ -103,6 +111,7 @@ function ValidateInput({
     const regex = /\d/;
     if (data.trim() && regex.test(data)) {
       setTitle("invalid");
+      setIsValid(false);
     }
   }
 
@@ -113,6 +122,7 @@ function ValidateInput({
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (data.trim() && !regex.test(data)) {
       setTitle("invalid");
+      setIsValid(false);
     }
   }
 
@@ -123,6 +133,7 @@ function ValidateInput({
     const regex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,20}$/;
     if (data.trim() && !regex.test(data)) {
       setTitle("password");
+      setIsValid(false);
     }
   }
 
@@ -132,6 +143,7 @@ function ValidateInput({
   function checkRepassword() {
     if (data.trim() && data !== rePassword) {
       setTitle("confirmPassword");
+      setIsValid(false);
     }
   }
 

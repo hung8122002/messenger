@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { Input, Button } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import image from "~/asset/image.png";
 
 import style from "./style.module.scss";
 
@@ -72,10 +73,7 @@ function LoginPage() {
         </div>
       </div>
       <div className={clsx(style.login__right)}>
-        <img
-          src="https://z-p3-scontent.fhan9-1.fna.fbcdn.net/v/t39.8562-6/120973513_338186077283942_8148888802958728934_n.png?_nc_cat=1&ccb=1-7&_nc_sid=6825c5&_nc_ohc=J0zmPnGhk9kAX8f5u10&_nc_ht=z-p3-scontent.fhan9-1.fna&oh=00_AfCrDIyv0Z_WJzg_TMLjudDG1D_TnezmbXSe01ssYK3lqw&oe=64E83727"
-          alt=""
-        />
+        <img src={image} alt="" />
       </div>
     </div>
   );

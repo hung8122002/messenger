@@ -9,25 +9,27 @@ import { ValidateInput } from "~/Components";
 
 function SignupPage() {
   // hooks
-  const [triggerValidate, setTriggerValidate] = useState(false);
+  const [triggerValidate, setTriggerValidate] = useState(0);
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [canSignup, setCanSignup] = useState(true);
   const [inputRefs, setInputRefs] = useState<Array<InputRef>>([]);
-  useEffect(() => {
-    setTriggerValidate(false);
-  }, [triggerValidate]);
 
   useEffect(() => {
     if (inputRefs.length) {
       inputRefs[0].focus();
+    } else {
+      if (firstName && surname && email && password && rePassword) {
+      }
     }
   }, [inputRefs]);
 
   const handlerInvalid = useCallback((data: InputRef) => {
     setInputRefs((inputRefs) => [...inputRefs, data]);
+    setCanSignup(false);
   }, []);
 
   // variables
@@ -35,12 +37,18 @@ function SignupPage() {
 
   //functions
   /**
-   * Gửi form
+   * Kiểm tra form
    */
   function submitSignupForm() {
     setInputRefs([]);
-    setTriggerValidate(true);
+    setCanSignup(true);
+    setTriggerValidate((triggerValidate) => triggerValidate + 1);
   }
+
+  /**
+   * Đăng nhập
+   */
+  function signup() {}
 
   return (
     <div className={clsx(style.signup)}>

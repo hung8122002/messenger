@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Input, InputRef, Tooltip } from "antd";
-import { useEffect, useState, useRef, memo } from "react";
+import { useState, useRef, forwardRef, useImperativeHandle } from "react";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { TooltipPlacement } from "antd/es/tooltip";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ type validateInputProps = {
   triggerValidate?: number;
   rules?: Array<rule>;
   rePassword?: string;
-  type?: "number" | "text" | "password";
+  type?: "Password";
   invalidRef?: (value: any) => void;
   onChange?: (value: any) => void;
 };
@@ -24,25 +24,24 @@ type validateInputProps = {
  * @param placement: Vị trí của tooltip
  * @param placeholder: Nội dung của input
  * @param size: Kích thước của input
- * @param triggerValidate: Kích hoạt sự kiện validate
  * @param rules: Các lựa chọn validate validate
  * @param rePassword: Mật khẩu đã nhập để kiểm tra confirm password
  * @param type: Kiểu input
- * @param invalidRef: Ref của input (được gửi khi input không hợp lệ)
  * @param onChange: Sự kiện thay đổi giá trị input
  * @returns JSX
  */
-function ValidateInput({
-  placement,
-  placeholder,
-  size,
-  triggerValidate,
-  rules,
-  rePassword,
-  type,
-  invalidRef = () => {},
-  onChange = () => {},
-}: validateInputProps) {
+function ValidateInput(
+  {
+    placement,
+    placeholder,
+    size,
+    rules,
+    rePassword,
+    type,
+    onChange = () => {},
+  }: validateInputProps,
+  ref: any
+) {
   // hooks
   // Giá trị input
   const [data, setData] = useState("");
@@ -50,27 +49,18 @@ function ValidateInput({
   // Tiêu đề tooltip
   const [title, setTitle] = useState("");
 
-  const [isValid, setIsValid] = useState(true);
-
   // Ref input
-  const componentRef = useRef<InputRef>(null);
+  const inputRef = useRef<InputRef>(null);
 
-  useEffect(() => {
-    setIsValid(true);
-    console.log(isValid);
-    setIsValid(true);
-    checkRule();
-    setIsValid(true);
-  }, [triggerValidate]);
-
-  useEffect(() => {
-    if (!isValid) {
-      invalidRef(componentRef.current);
-    }
-  }, [isValid]);
+  useImperativeHandle(ref, () => ({
+    validate() {
+      return checkRule();
+    },
+  }));
 
   // variables
   const { t } = useTranslation("translation");
+  const InputElement = type ? Input[type] : Input;
 
   // fuctions
   /**
@@ -78,19 +68,29 @@ function ValidateInput({
    */
   function checkRule() {
     if (rules?.includes("required")) {
-      checkNullOrEmpty();
+      if (!checkNullOrEmpty()) {
+        return inputRef.current;
+      }
     }
     if (rules?.includes("name")) {
-      checkValidName();
+      if (!checkValidName()) {
+        return inputRef.current;
+      }
     }
     if (rules?.includes("email")) {
-      checkValidEmail();
+      if (!checkValidEmail()) {
+        return inputRef.current;
+      }
     }
     if (rules?.includes("password")) {
-      checkValidPassword();
+      if (!checkValidPassword()) {
+        return inputRef.current;
+      }
     }
     if (rules?.includes("re-password")) {
-      checkRepassword();
+      if (!checkRepassword()) {
+        return inputRef.current;
+      }
     }
   }
 
@@ -100,7 +100,9 @@ function ValidateInput({
   function checkNullOrEmpty() {
     if (!data.trim()) {
       setTitle("empty");
-      setIsValid(false);
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -109,9 +111,11 @@ function ValidateInput({
    */
   function checkValidName() {
     const regex = /\d/;
-    if (data.trim() && regex.test(data)) {
+    if (regex.test(data)) {
       setTitle("invalid");
-      setIsValid(false);
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -120,9 +124,11 @@ function ValidateInput({
    */
   function checkValidEmail() {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (data.trim() && !regex.test(data)) {
+    if (!regex.test(data)) {
       setTitle("invalid");
-      setIsValid(false);
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -131,9 +137,11 @@ function ValidateInput({
    */
   function checkValidPassword() {
     const regex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,20}$/;
-    if (data.trim() && !regex.test(data)) {
+    if (!regex.test(data)) {
       setTitle("password");
-      setIsValid(false);
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -141,9 +149,11 @@ function ValidateInput({
    * Kiểm tra xác nhận mật khẩu hợp lệ
    */
   function checkRepassword() {
-    if (data.trim() && data !== rePassword) {
+    if (data !== rePassword) {
       setTitle("confirmPassword");
-      setIsValid(false);
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -158,39 +168,22 @@ function ValidateInput({
       placement={placement}
       color="red"
     >
-      {type === "password" ? (
-        <Input.Password
-          ref={componentRef}
-          placeholder={placeholder}
-          size={size}
-          status={title && "error"}
-          suffix={
-            <ExclamationCircleFilled style={{ display: title ? "" : "none" }} />
-          }
-          onChange={(e) => {
-            setData(e.target.value);
-            onChange(e.target.value);
-            setTitle("");
-          }}
-        />
-      ) : (
-        <Input
-          ref={componentRef}
-          placeholder={placeholder}
-          size={size}
-          status={title && "error"}
-          suffix={
-            <ExclamationCircleFilled style={{ display: title ? "" : "none" }} />
-          }
-          onChange={(e) => {
-            setData(e.target.value);
-            onChange(e.target.value);
-            setTitle("");
-          }}
-        />
-      )}
+      <InputElement
+        ref={inputRef}
+        placeholder={placeholder}
+        size={size}
+        status={title && "error"}
+        suffix={
+          <ExclamationCircleFilled style={{ display: title ? "" : "none" }} />
+        }
+        onChange={(e) => {
+          setData(e.target.value);
+          onChange(e.target.value);
+          setTitle("");
+        }}
+      />
     </Tooltip>
   );
 }
 
-export default memo(ValidateInput);
+export default forwardRef(ValidateInput);

@@ -1,37 +1,27 @@
 import clsx from "clsx";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Space, Button, InputRef } from "antd";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import style from "./style.module.scss";
 import { ValidateInput } from "~/Components";
+import { validateInputRef } from "~/interface";
 
 function SignupPage() {
   // hooks
-  const [triggerValidate, setTriggerValidate] = useState(0);
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-  const [canSignup, setCanSignup] = useState(true);
-  const [inputRefs, setInputRefs] = useState<Array<InputRef>>([]);
-
-  useEffect(() => {
-    if (inputRefs.length) {
-      inputRefs[0].focus();
-    } else {
-      if (firstName && surname && email && password && rePassword) {
-      }
-    }
-  }, [inputRefs]);
-
-  const handlerInvalid = useCallback((data: InputRef) => {
-    setInputRefs((inputRefs) => [...inputRefs, data]);
-    setCanSignup(false);
-  }, []);
-
+  const signupForm = {
+    firstNameRef: useRef<validateInputRef>(),
+    surnamrRef: useRef<validateInputRef>(),
+    emailRef: useRef<validateInputRef>(),
+    passwordRef: useRef<validateInputRef>(),
+    repasswordRef: useRef<validateInputRef>(),
+  };
   // variables
   const { t } = useTranslation("translation");
 
@@ -40,9 +30,19 @@ function SignupPage() {
    * Kiểm tra form
    */
   function submitSignupForm() {
-    setInputRefs([]);
-    setCanSignup(true);
-    setTriggerValidate((triggerValidate) => triggerValidate + 1);
+    let invalidRef: InputRef | undefined = undefined;
+    for (const propName in signupForm) {
+      const item =
+        signupForm[propName as keyof typeof signupForm].current?.validate();
+      if (!invalidRef) {
+        invalidRef = item;
+      }
+    }
+    if (invalidRef) {
+      invalidRef?.focus();
+    } else {
+      signup();
+    }
   }
 
   /**
@@ -63,19 +63,17 @@ function SignupPage() {
               placeholder={t("signupPage.firstName")}
               size="large"
               placement="left"
-              triggerValidate={triggerValidate}
               onChange={(data) => setFirstName(data)}
               rules={["required", "name"]}
-              invalidRef={handlerInvalid}
+              ref={signupForm.firstNameRef}
             />
             <ValidateInput
               placeholder={t("signupPage.surname")}
               size="large"
               placement="right"
-              triggerValidate={triggerValidate}
               onChange={(data) => setSurname(data)}
               rules={["required", "name"]}
-              invalidRef={handlerInvalid}
+              ref={signupForm.surnamrRef}
             />
           </Space>
           <Space.Compact style={{ display: "flex" }}>
@@ -83,35 +81,32 @@ function SignupPage() {
               placeholder={t("common.email")}
               size="large"
               placement="right"
-              triggerValidate={triggerValidate}
               onChange={(data) => setEmail(data)}
               rules={["required", "email"]}
-              invalidRef={handlerInvalid}
+              ref={signupForm.emailRef}
             />
           </Space.Compact>
           <Space.Compact style={{ display: "flex" }}>
             <ValidateInput
-              type="password"
+              type="Password"
               placeholder={t("common.password")}
               size="large"
               placement="left"
-              triggerValidate={triggerValidate}
               onChange={(data) => setPassword(data)}
               rules={["required", "password"]}
-              invalidRef={handlerInvalid}
+              ref={signupForm.passwordRef}
             />
           </Space.Compact>
           <Space.Compact style={{ display: "flex" }}>
             <ValidateInput
-              type="password"
+              type="Password"
               placeholder={t("common.confirmPassword")}
               size="large"
               placement="right"
-              triggerValidate={triggerValidate}
               onChange={(data) => setRePassword(data)}
               rePassword={password}
               rules={["required", "re-password"]}
-              invalidRef={handlerInvalid}
+              ref={signupForm.repasswordRef}
             />
           </Space.Compact>
           <Space>

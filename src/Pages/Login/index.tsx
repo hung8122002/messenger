@@ -1,18 +1,40 @@
+/* eslint-disable react/jsx-pascal-case */
 import clsx from "clsx";
-import { Input, Button } from "antd";
+import { useRef, useState } from "react";
+import { Input, Button, Drawer } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import image from "~/asset/image.png";
 
 import style from "./style.module.scss";
+import { SignupPage, ForgetPasswordPage } from "~/Pages";
 
 /**
  * Trang login
  * @returns tsx
  */
 function LoginPage() {
+  // hooks
+  const [open, setOpen] = useState(false);
+
   // variables
   const { t } = useTranslation("translation");
+  const DrawerItem = useRef(SignupPage);
+  // functions
+  function showDrawer(type: string) {
+    let item;
+    if (type === "signup") {
+      item = SignupPage;
+    } else {
+      item = ForgetPasswordPage;
+    }
+    DrawerItem.current = item;
+    setOpen(true);
+  }
+
+  function onClose() {
+    setOpen(false);
+  }
 
   return (
     <div className={clsx(style.login)}>
@@ -66,15 +88,34 @@ function LoginPage() {
             {t("loginPage.login")}
           </Button>
           <p>
-            <Link to="recover">{t("loginPage.forgetPassword")}</Link>{" "}
+            <span onClick={() => showDrawer("recover")}>
+              {t("loginPage.forgetPassword")}
+            </span>{" "}
             {t("loginPage.or")}{" "}
-            <Link to="signup">{t("loginPage.createAccount")}</Link>
+            <span onClick={() => showDrawer("signup")}>
+              {t("loginPage.createAccount")}
+            </span>
           </p>
         </div>
       </div>
       <div className={clsx(style.login__right)}>
         <img src={image} alt="" />
       </div>
+      <Drawer
+        bodyStyle={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onClose={onClose}
+        open={open}
+        closable={false}
+        width={600}
+      >
+        <div>
+          <DrawerItem.current />
+        </div>
+      </Drawer>
     </div>
   );
 }

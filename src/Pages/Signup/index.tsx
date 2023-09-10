@@ -1,22 +1,22 @@
 import clsx from "clsx";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Space, Button, InputRef } from "antd";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import style from "./style.module.scss";
 import { ValidateInput } from "~/Components";
 import { validateInputRef } from "~/interface";
+import { post } from "~/utils";
+import { authApi } from "~/api";
 
 function SignupPage() {
   // hooks
-  const [firstName, setFirstName] = useState("");
+  const [firstname, setFirstname] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
   const signupForm = {
-    firstNameRef: useRef<validateInputRef>(),
+    firstnameRef: useRef<validateInputRef>(),
     surnamrRef: useRef<validateInputRef>(),
     emailRef: useRef<validateInputRef>(),
     passwordRef: useRef<validateInputRef>(),
@@ -48,7 +48,18 @@ function SignupPage() {
   /**
    * Đăng nhập
    */
-  function signup() {}
+  function signup() {
+    post(authApi.signup, {
+      firstname,
+      surname,
+      email,
+      password,
+    })
+      .then((data) => {})
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }
 
   return (
     <div className={clsx(style.signup)}>
@@ -63,9 +74,9 @@ function SignupPage() {
               placeholder={t("signupPage.firstName")}
               size="large"
               placement="left"
-              onChange={(data) => setFirstName(data)}
+              onChange={(data) => setFirstname(data)}
               rules={["required", "name"]}
-              ref={signupForm.firstNameRef}
+              ref={signupForm.firstnameRef}
             />
             <ValidateInput
               placeholder={t("signupPage.surname")}
@@ -103,7 +114,6 @@ function SignupPage() {
               placeholder={t("common.confirmPassword")}
               size="large"
               placement="right"
-              onChange={(data) => setRePassword(data)}
               rePassword={password}
               rules={["required", "re-password"]}
               ref={signupForm.repasswordRef}
@@ -118,7 +128,6 @@ function SignupPage() {
             >
               <b>{t("signupPage.signup")}</b>
             </Button>
-            <Link to="/">{t("signupPage.haveAccount")}</Link>
           </Space>
         </div>
       </div>

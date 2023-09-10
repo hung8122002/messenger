@@ -37,6 +37,17 @@
     align-items: center;
     gap: 12px;
     margin: 32px 0;
+
+    p span {
+      color: blue;
+      cursor: pointer;
+      opacity: 0.7;
+
+      &:hover {
+        text-decoration: underline;
+        opacity: 1;
+      }
+    }
   }
 }
 

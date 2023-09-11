@@ -17,7 +17,8 @@
     "firstName": "First name",
     "surname": "Surname",
     "signup": "Sign up",
-    "haveAccount": "Already have an account ?"
+    "success": "Sign up successfully",
+    "error": "Something went wrong, please try again"
   },
   "recover": {
     "back": "Back",
@@ -48,6 +49,7 @@
     "empty": "Please enter your {{ message, lowercase }}",
     "invalid": "Please enter a valid {{ message, lowercase }}",
     "password": "Password must contain at least 6 characters, at most 20 characters, and include numbers and letters",
-    "confirmPassword": "Please enter a correct password"
+    "confirmPassword": "Please enter a correct password",
+    "exist": "{{message}} is already in use"
   }
 }

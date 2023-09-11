@@ -8,8 +8,13 @@ import { ValidateInput } from "~/Components";
 import { validateInputRef } from "~/interface";
 import { post } from "~/utils";
 import { authApi } from "~/api";
+import { NoticeType } from "antd/es/message/interface";
 
-function SignupPage() {
+type pageProps = {
+  showAlert?: (type: NoticeType, content: string) => void;
+};
+
+function SignupPage({ showAlert = () => {} }: pageProps) {
   // hooks
   const [firstname, setFirstname] = useState("");
   const [surname, setSurname] = useState("");
@@ -55,9 +60,14 @@ function SignupPage() {
       email,
       password,
     })
-      .then((data) => {})
+      .then(() => {
+        showAlert("success", t("signupPage.success"));
+      })
       .catch((error) => {
-        console.log(error.response);
+        if (error.response && error.response.status === 409) {
+          signupForm.emailRef.current?.existEmail(true);
+        }
+        showAlert("error", "Something went wrong, please try again");
       });
   }
 

@@ -1,7 +1,7 @@
 /**
  * Base URL cho api của use
  */
-const baseURL = "user";
+const baseURL = "users";
 
 /**
  * api login

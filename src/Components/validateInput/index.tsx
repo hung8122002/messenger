@@ -15,8 +15,7 @@ type validateInputProps = {
   rules?: Array<rule>;
   rePassword?: string;
   type?: "Password";
-  invalidRef?: (value: any) => void;
-  onChange?: (value: any) => void;
+  onChange?: (value: string) => void;
 };
 
 /**
@@ -56,6 +55,12 @@ function ValidateInput(
     validate() {
       return checkRule();
     },
+    existEmail(isExistEmail: boolean) {
+      if (isExistEmail) {
+        setTitle(t("exist"));
+        inputRef.current?.focus();
+      }
+    },
   }));
 
   // variables
@@ -67,6 +72,7 @@ function ValidateInput(
    * Kiểu tra các rule
    */
   function checkRule() {
+    setTitle("");
     if (rules?.includes("required")) {
       if (!checkNullOrEmpty()) {
         return inputRef.current;

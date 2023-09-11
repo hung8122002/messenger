@@ -17,7 +17,8 @@
     "firstName": "Họ",
     "surname": "Tên",
     "signup": "Đăng ký",
-    "haveAccount": "Đã có tài khoản ?"
+    "success": "Đăng ký thành công",
+    "error": "Có lỗi xảy ra, vui lòng thử lại"
   },
   "recover": {
     "back": "Quay lại",
@@ -48,6 +49,7 @@
     "empty": "Vui lòng nhập {{ message, lowercase }} của bạn",
     "invalid": "Vui lòng nhập {{ message, lowercase }} hợp lệ",
     "password": "Mật khẩu phải chứa ít nhất 6 ký tự, tối đa 20 ký tự và bao gồm số và chữ cái",
-    "confirmPassword": "Vui lòng nhập đúng mật khẩu"
+    "confirmPassword": "Vui lòng nhập đúng mật khẩu",
+    "exist": "{{message}} đã được sử dụng"
   }
 }

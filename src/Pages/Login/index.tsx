@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 import clsx from "clsx";
 import { useRef, useState } from "react";
-import { Input, Button, Drawer } from "antd";
+import { Input, Button, Drawer, message } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import image from "~/asset/image.png";
+import { NoticeType } from "antd/es/message/interface";
 
 import style from "./style.module.scss";
 import { SignupPage, ForgetPasswordPage } from "~/Pages";
@@ -16,10 +17,12 @@ import { SignupPage, ForgetPasswordPage } from "~/Pages";
 function LoginPage() {
   // hooks
   const [open, setOpen] = useState(false);
+  const DrawerItem = useRef(SignupPage);
 
   // variables
   const { t } = useTranslation("translation");
-  const DrawerItem = useRef(SignupPage);
+  const [messageApi, contextHolder] = message.useMessage();
+
   // functions
   function showDrawer(type: string) {
     let item;
@@ -36,8 +39,19 @@ function LoginPage() {
     setOpen(false);
   }
 
+  function showAlert(type: NoticeType, content: string) {
+    messageApi.open({
+      type,
+      content,
+    });
+    if (type === "success") {
+      onClose();
+    }
+  }
+
   return (
     <div className={clsx(style.login)}>
+      {contextHolder}
       {/* Mobile */}
       <div className={clsx(style["login__left--mobile"])}>
         <img
@@ -111,9 +125,10 @@ function LoginPage() {
         open={open}
         closable={false}
         width={600}
+        destroyOnClose={true}
       >
         <div>
-          <DrawerItem.current />
+          <DrawerItem.current showAlert={showAlert} />
         </div>
       </Drawer>
     </div>

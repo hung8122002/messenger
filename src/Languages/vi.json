@@ -51,5 +51,8 @@
     "password": "Mật khẩu phải chứa ít nhất 6 ký tự, tối đa 20 ký tự và bao gồm số và chữ cái",
     "confirmPassword": "Vui lòng nhập đúng mật khẩu",
     "exist": "{{message}} đã được sử dụng"
+  },
+  "error": {
+    "serverError": "Có lỗi xảy ra, vui lòng thử lại"
   }
 }

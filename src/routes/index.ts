@@ -1,4 +1,4 @@
-import { LoginPage, SignupPage, ForgetPasswordPage } from "~/Pages";
+import { LoginPage } from "~/Pages";
 import { LoginLayout } from "~/Layout";
 
 /**

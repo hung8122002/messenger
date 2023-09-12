@@ -51,5 +51,8 @@
     "password": "Password must contain at least 6 characters, at most 20 characters, and include numbers and letters",
     "confirmPassword": "Please enter a correct password",
     "exist": "{{message}} is already in use"
+  },
+  "error": {
+    "serverError": "Something went wrong, please try again"
   }
 }

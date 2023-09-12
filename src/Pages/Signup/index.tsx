@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useState, useRef } from "react";
 import { Space, Button, InputRef } from "antd";
 import { useTranslation } from "react-i18next";
+import * as bcrypt from "bcryptjs";
 
 import style from "./style.module.scss";
 import { ValidateInput } from "~/Components";
@@ -27,6 +28,7 @@ function SignupPage({ showAlert = () => {} }: pageProps) {
     passwordRef: useRef<validateInputRef>(),
     repasswordRef: useRef<validateInputRef>(),
   };
+  const [loadingButton, setLoadingButton] = useState(false);
   // variables
   const { t } = useTranslation("translation");
 
@@ -46,6 +48,7 @@ function SignupPage({ showAlert = () => {} }: pageProps) {
     if (invalidRef) {
       invalidRef?.focus();
     } else {
+      setLoadingButton(true);
       signup();
     }
   }
@@ -54,20 +57,24 @@ function SignupPage({ showAlert = () => {} }: pageProps) {
    * Đăng nhập
    */
   function signup() {
-    post(authApi.signup, {
+    const userInfor = {
       firstname,
       surname,
       email,
       password,
-    })
+    };
+    post(authApi.signup, userInfor)
       .then(() => {
         showAlert("success", t("signupPage.success"));
+        setLoadingButton(false);
       })
       .catch((error) => {
         if (error.response && error.response.status === 409) {
           signupForm.emailRef.current?.existEmail(true);
+        } else {
+          showAlert("error", t("error.serverError"));
+          setLoadingButton(false);
         }
-        showAlert("error", "Something went wrong, please try again");
       });
   }
 
@@ -134,6 +141,7 @@ function SignupPage({ showAlert = () => {} }: pageProps) {
               onClick={submitSignupForm}
               type="primary"
               size="large"
+              loading={loadingButton}
               style={{ background: "green", padding: "0 40px" }}
             >
               <b>{t("signupPage.signup")}</b>

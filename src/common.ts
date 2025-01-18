@@ -1,5 +1,5 @@
 function ClickMe() {
-  alert("Click me");
+  alert("Click me 1");
 }
 
 export default ClickMe;
